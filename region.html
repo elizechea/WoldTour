@@ -32,20 +32,21 @@
       <h2>Country list</h2>
       <div class="col-md-6" name="search_by">
         <label for="input-search">Look for?</label>
-        <input type="search" class="form-control" name="input-search" placeholder="Search countries...">
+        <input ng-model="countriesCtrl.filter" type="search" class="form-control" name="input-search" placeholder="Search countries...">
       </div>
       <div class="col-md-6" name="order_by">
         <label for="order_field">Order by</label>
         <br>
         <div class="btn-group" name="order_field">
-          <button type="button" class="btn btn-success">Name</button>
-          <button type="button" class="btn ">Population</button>
+          <button ng-click="countriesCtrl.order = 'name'" type="button" class="btn" ng-class="{'btn-success': countriesCtrl.order_is('name')}">Name</button>
+          <button ng-click="countriesCtrl.order = 'population'" type="button" class="btn" ng-class="{'btn-success': countriesCtrl.order_is('population')}">Population</button>
         </div>
       </div>
     </div>
     <hr>
     <div class="row row-fluid">
-      <div class="col-md-6" ng-repeat="country in countriesCtrl.countries">
+      <div class="col-md-6" ng-repeat="country in countriesCtrl.countries | filter:countriesCtrl.filter | orderBy:countriesCtrl.order">
+        <!-- | orderBy:countriesCtrl.order -->
         <div class="col-md-4">
           <img src="http://www.geonames.org/flags/x/{{country.alpha2Code | lowercase}}.gif" class="img-responsive"></img>
         </div>
@@ -59,10 +60,10 @@
     </div>
   </section>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.2.17/i18n/angular-locale_es-es.js"></script>
   <script src="app.js"></script>
   <script src="countriesCtrl.js"></script>
   <script src="countriesFactory.js"></script>
-
 </body>
 
 </html>
