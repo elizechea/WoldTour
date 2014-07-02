@@ -1,0 +1,1 @@
+var worldTourApp = angular.module('worldTourApp', []);

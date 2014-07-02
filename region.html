@@ -2,83 +2,67 @@
 <html>
 
 <head>
-    <title>World Tour</title>
-    <meta charset="UTF-8">
-    <meta name="description" content="Ejercicio curso AngularJS" />
-    <meta name="keywords" content="" />
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>World Tour</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="Ejercicio curso AngularJS" />
+  <meta name="keywords" content="" />
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <header>
-        <h1>World Tour</h1>
-    </header>
-    <hr>
-    <section name="region_selector">
-        <div class="form-inline">
-            <label for="region_code">Choose a region</label>
-            <select class="form-control" name="region_code">
-                <option value="europe">Europa</option>
-                <option value="americas">América</option>
-                <option value="asia">Asia</option>
-                <option value="africa">Africa</option>
-            </select>
+<body ng-app="worldTourApp" ng-controller="CountriesCtrl as countriesCtrl">
+  <header>
+    <h1>World Tour</h1>
+  </header>
+  <hr>
+  <section name="region_selector">
+    <div class="form-inline">
+      <label for="region_code">Choose a region</label>
+      <select 
+        class="form-control"
+        name="region_code"
+        ng-model="countriesCtrl.region"
+        ng-change="countriesCtrl.update()"
+        ng-options="region.name for region in countriesCtrl.regions track by region.code">
+      </select>
+    </div>
+  </section>
+  <hr>
+  <section name="country_list" class="container">
+    <div class="row row-fluid">
+      <h2>Country list</h2>
+      <div class="col-md-6" name="search_by">
+        <label for="input-search">Look for?</label>
+        <input type="search" class="form-control" name="input-search" placeholder="Search countries...">
+      </div>
+      <div class="col-md-6" name="order_by">
+        <label for="order_field">Order by</label>
+        <br>
+        <div class="btn-group" name="order_field">
+          <button type="button" class="btn btn-success">Name</button>
+          <button type="button" class="btn ">Population</button>
         </div>
-    </section>
+      </div>
+    </div>
     <hr>
-    <section name="country_list" class="container">
-        <div class="row row-fluid">
-            <h2>Country list</h2>
-            <div class="col-md-6" name="search_by">
-                <label for="input-search">Look for?</label>
-                <input type="search" class="form-control" name="input-search" placeholder="Search countries...">
-            </div>
-            <div class="col-md-6" name="order_by">
-                <label for="order_field">Order by</label>
-                <br>
-                <div class="btn-group" name="order_field">
-                    <button type="button" class="btn btn-success">Name</button>
-                    <button type="button" class="btn ">Population</button>
-                </div>
-            </div>
+    <div class="row row-fluid">
+      <div class="col-md-6" ng-repeat="country in countriesCtrl.countries">
+        <div class="col-md-4">
+          <img src="http://www.geonames.org/flags/x/{{country.alpha2Code | lowercase}}.gif" class="img-responsive"></img>
         </div>
-        <hr>
-        <div class="row row-fluid">
-            <div class="col-md-6">
-                <div class="col-md-4">
-                    <img src="http://www.geonames.org/flags/x/es.gif" class="img-responsive"></img>
-                </div>
-                <div class="col-md-8">
+        <div class="col-md-8">
+          <h4 name="name">{{country.name}}</h4>
+          <p name="population">{{country.population | number}}</p>
+          <a name="capital" href="/weather/es/madrid">{{country.capital}}</a>
+        </div>
+        <p/>
+      </div>
+    </div>
+  </section>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+  <script src="app.js"></script>
+  <script src="countriesCtrl.js"></script>
+  <script src="countriesFactory.js"></script>
 
-                    <h4 name="name">Spain</h4>
-                    <p name="population">42.125.369</p>
-                    <a name="capital" href="/weather/es/madrid">Madrid</a>
-                </div>
-                <p/>
-            </div>
-            <div class="col-md-6">
-                <div class="col-md-4">
-                    <img src="http://www.geonames.org/flags/x/fr.gif" class="img-responsive"></img>
-                </div>
-                <div class="col-md-8">
-                    <h4 name="name">France</h4>
-                    <p name="population">42.125.369</p>
-                    <a name="capital" href="/weather/es/paris">Paris</a>
-                </div>
-            <p/>
-        </div>
-    <div class="col-md-6">
-                <div class="col-md-4">
-                    <img src="http://www.geonames.org/flags/x/pt.gif" class="img-responsive"></img>
-                </div>
-                <div class="col-md-8">
-                    <h4 name="name">Portugal</h4>
-                    <p name="population">42.125.369</p>
-                    <a name="capital" href="/weather/es/lisbon">Lisbon</a>
-                </div>
-            </div>
-        </div>
-    </section>
 </body>
 
 </html>
