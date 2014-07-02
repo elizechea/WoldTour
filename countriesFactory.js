@@ -5,7 +5,7 @@
 
     var factory = {};
 
-    factory .getCountries = function (region)  {
+    factory.getCountries = function (region)  {
       var result = $http.get(urlBase + 'region/' + region);
       return result;
     };

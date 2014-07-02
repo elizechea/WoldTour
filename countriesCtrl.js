@@ -1,6 +1,6 @@
 (function () {
   worldTourApp.controller('CountriesCtrl', ['countriesFactory', '$log', function (countriesFactory, $log) {
-    scope = this;
+    var scope = this;
 
     scope.countries = {};
 
@@ -18,6 +18,7 @@
 
     scope.update = function () {
       countriesFactory.getCountries(scope.region.code).success(function (data) {
+        $log.log(data);
         scope.countries = data;
       });
     };

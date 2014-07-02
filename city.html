@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>World Tour city weather</title>
-    <meta charset="UTF-8">
-    <meta name="description" content="Ejercicio curso AngularJS" />
-    <meta name="keywords" content="" />
-    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-
-<body>
-    <div class="col-md-2">
-        <img src="http://openweathermap.org/img/w/04d.png" />
-    </div>
-    <div class="col-md-10">
-        <h4 name="city_name">Paris</h4>
-        <p name="weather_description">overcast clouds</p>
-    </div>
-</body>
-
-</html>
+<div class="col-md-2">
+  <img ng-src="http://openweathermap.org/img/w/{{citiesCtrl.weather.icon}}.png" />
+</div>
+<div class="col-md-10">
+  <h4 name="city_name">{{citiesCtrl.city_name}}</h4>
+  <p name="weather_description">{{citiesCtrl.weather.description}}</p>
+</div>
+<div class="col-md-2">
+  <a name="volver" href="#/"><< Volver</a>
+</div>
