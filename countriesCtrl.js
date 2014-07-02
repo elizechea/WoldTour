@@ -8,6 +8,7 @@
       {code:'europe', name:'Europa'},
       {code:'americas', name:'América'},
       {code:'asia', name:'Asia'},
+      {code:'oceania', name:'Oceania'},
       {code:'africa', name:'Africa'}
     ];
 
